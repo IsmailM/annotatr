@@ -251,14 +251,14 @@ build_enhancer_annots = function(genome = c('hg19','hg38','mm9','mm10')) {
 
     # Get the enhancer annotations from FANTOM5
     if(genome == 'hg19') {
-        enhancers = rtracklayer::import.bed('http://fantom.gsc.riken.jp/5/datafiles/phase2.0/extra/Enhancers/human_permissive_enhancers_phase_1_and_2.bed.gz', genome = 'hg19')
+        enhancers = rtracklayer::import.bed('https://dbarchive.biosciencedbc.jp/data/fantom5/datafiles/LATEST/extra/Enhancers/human_permissive_enhancers_phase_1_and_2.bed.gz', genome = 'hg19')
     } else if(genome == 'hg38') {
         # Create AnnotationHub connection
         ah = AnnotationHub::AnnotationHub()
         chain = ah[['AH14150']]
 
         # Get hg19 enhancers
-        hg19_enhancers = rtracklayer::import.bed('http://fantom.gsc.riken.jp/5/datafiles/phase2.0/extra/Enhancers/human_permissive_enhancers_phase_1_and_2.bed.gz', genome = 'hg19')
+        hg19_enhancers = rtracklayer::import.bed('https://dbarchive.biosciencedbc.jp/data/fantom5/datafiles/LATEST/extra/Enhancers/human_permissive_enhancers_phase_1_and_2.bed.gz', genome = 'hg19')
 
         enhancers = rtracklayer::liftOver(x = hg19_enhancers, chain = chain)
         enhancers = sort(unlist(enhancers))
